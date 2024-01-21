@@ -1,0 +1,157 @@
+{% extends "base.html" %} 
+{% load humanize %}
+{% block content %}
+{% load static %}
+
+ <div class="content-wraper">
+        {% comment %} <div class="container">
+            <div class="row">
+                <h2>Nama Produk : {{produk1.nama_produk}}</h2>
+            </div>
+        </div> {% endcomment %}
+
+        <div class="container">
+            <div class="row single-product-area">
+                <div class="col-lg-5 col-md-6">
+                    <!-- Product Details Left -->
+                    <div class="product-details-left">
+                        <div class="product-details-images slider-navigation-1">
+                            <div class="lg-image">
+                                <a class="popup-img venobox vbox-item" href="{{produk1.gambar}}" data-gall="myGallery">
+                                    <img src="../{{produk1.gambar_satu}}" alt="{{produk1.nama_produk}}">dd
+                                </a>
+                            </div>
+                            <div class="lg-image">
+                                <a class="popup-img venobox vbox-item" href="{{produk1.gambar_satu}}" data-gall="myGallery">
+                                    <img src="../{{produk1.gambar_satu}}" alt="{{produk1.nama_produk}}">
+                                </a>
+                            </div>
+                            <div class="lg-image">
+                                <a class="popup-img venobox vbox-item" href="{{produk1.gambar_dua}}" data-gall="myGallery">
+                                    <img src="../{{produk1.gambar_dua}}" alt="{{produk1.nama_produk}}">
+                                </a>
+                            </div>
+                            <div class="lg-image">
+                                <a class="popup-img venobox vbox-item" href="{{produk1.gambar_tiga}}" data-gall="myGallery">
+                                    <img src="../{{produk1.gambar_tiga}}" alt="product image">
+                                </a>
+                            </div>
+                            <div class="lg-image">
+                                <a class="popup-img venobox vbox-item" href="{{produk1.gambar_empat}}" data-gall="myGallery">
+                                    <img src="../{{produk1.gambar_empat}}" alt="product image">
+                                </a>
+                            </div>
+                            <div class="lg-image">
+                                <a class="popup-img venobox vbox-item" href="{{produk1.gambar_lima}}" data-gall="myGallery">
+                                    <img src="../{{produk1.gambar_lima}}" alt="product image">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-details-thumbs slider-thumbs-1">                                        
+                            <div class="sm-image"><img src="../{{ produk1.gambar}}" alt="product image thumb"></div>
+                            <div class="sm-image"><img src="../{{ produk1.gambar_satu}}" alt="product image thumb"></div>
+                            <div class="sm-image"><img src="../{{ produk1.gambar_dua}}" alt="product image thumb"></div>
+                            <div class="sm-image"><img src="../{{ produk1.gambar_tiga}}" alt="product image thumb"></div>
+                            <div class="sm-image"><img src="../{{ produk1.gambar_empat}}" alt="product image thumb"></div>
+                            <div class="sm-image"><img src="../{{ produk1.gambar_lima}}" alt="product image thumb"></div>
+                        </div>
+                    </div>
+                    <!--// Product Details Left -->
+                </div>
+
+                <div class="col-lg-7 col-md-6">
+                    <div class="product-details-view-content pt-60">
+                        <div class="product-info">
+                            <h2>{{produk1.nama_produk}}</h2>
+                            <div class="rating-box pt-20">
+                                <ul class="rating rating-with-review-item">
+                                    <li><i class="fa fa-star-o"></i></li>
+                                    <li><i class="fa fa-star-o"></i></li>
+                                    <li><i class="fa fa-star-o"></i></li>
+                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                    <li class="review-item"><a href="#">Read Review</a></li>
+                                    <li class="review-item"><a href="#">Write Review</a></li>
+                                </ul>
+                            </div>
+                            <div class="price-box pt-20">
+                                <span class="new-price new-price-2">Rp. {{produk1.harga|intcomma}}</span>
+                            </div>
+                            <div class="product-desc">
+                                <p>
+                                    <span>{{produk1.keterangan}}
+                                    </span>
+                                </p>
+                            </div>
+                            {% comment %} <div class="product-variants">
+                                <div class="produt-variants-size">
+                                    <label>Dimension</label>
+                                    <select class="nice-select">
+                                        <option value="1" title="S" selected="selected">40x60cm</option>
+                                        <option value="2" title="M">60x90cm</option>
+                                        <option value="3" title="L">80x120cm</option>
+                                    </select>
+                                </div>
+                            </div> {% endcomment %}
+                            <div class="single-add-to-cart">
+                                <form action="{% url 'cart_add' produk1.id %}" method="post" class="cart-quantity">
+                                {% csrf_token %}
+
+                                    <div class="quantity">
+                                        <label>Quantity</label>
+                                        <div class="cart-plus-minus">
+                                            <input class="cart-plus-minus-box" value="1" type="number" name="quantity">
+                                            <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+                                            <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                        </div>
+                                    </div>
+                                    {{ cart_product_form }}
+                                    <button class="add-to-cart" type="submit">Add to cart</button>
+                                </form>
+                            </div>
+                            <div class="product-additional-info pt-25">
+                                <a class="wishlist-btn" href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a>
+                                <div class="product-social-sharing pt-25">
+                                    <ul>
+                                        <li class="facebook"><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
+                                        <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i>Google +</a></li>
+                                        <li class="instagram"><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="block-reassurance">
+                                <ul>
+                                    <li>
+                                        <div class="reassurance-item">
+                                            <div class="reassurance-icon">
+                                                <i class="fa fa-check-square-o"></i>
+                                            </div>
+                                            <p>Security policy (edit with Customer reassurance module)</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="reassurance-item">
+                                            <div class="reassurance-icon">
+                                                <i class="fa fa-truck"></i>
+                                            </div>
+                                            <p>Delivery policy (edit with Customer reassurance module)</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="reassurance-item">
+                                            <div class="reassurance-icon">
+                                                <i class="fa fa-exchange"></i>
+                                            </div>
+                                            <p> Return policy (edit with Customer reassurance module)</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+{% endblock content %}
